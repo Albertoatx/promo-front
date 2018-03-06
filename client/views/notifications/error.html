@@ -1,0 +1,6 @@
+<div class="alert alert-danger" ng-show="isError">
+    <!-- Le he quitado el "&times;" ya que da error de jquery "Syntax error, unrecognized expression: #/user/login" -->
+    <!--<a href="#/user/login" class="close" data-dismiss="alert" aria-label="close" ng-click="isError = false">&times;</a>-->
+    <a href="#/user/login" class="close" data-dismiss="alert" aria-label="close" ng-click="isError = false"></a>
+    <span class="glyphicon glyphicon-thumbs-down"></span> <strong>{{errorMsg.data}}!</strong>  
+</div>

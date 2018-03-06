@@ -1,0 +1,12 @@
+<!-- creamos tabs que pondremos al comienzo de las páginas para "view" y "edit" -->
+
+<!-- en función de si estamos consultando o editando tenemos que fijar que clase esta activa -->
+<!-- "editObra" y "viewObra" son objetos adjuntados al $scope en los respectivos controladores  -->
+
+<!-- Si viewObra = true va a asignar como “active” la clase “nav nav-tabs” -->
+<ul class="nav nav-tabs">
+  <li role="presentation" ng-class="{active: viewObra}">
+          <a ng-href="/#/obrapromotor/{{ promotorId }}/detail/{{ obraDatos.codigoobra }}">View</a></li>
+  <li role="presentation" ng-class="{active: editObra}">
+          <a ng-href="/#/obrapromotor/{{ promotorId }}/edit/{{ obraDatos.codigoobra }}">Edit</a></li>
+</ul>

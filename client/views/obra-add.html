@@ -1,0 +1,51 @@
+<form role="form" id="obraForm" name="addObraForm" novalidate>
+  <br>
+  <div class="form-group">
+    <label for="title" class="control-label">Código Obra</label>
+    <!--
+    <input type="text" ng-model="obraDatos.codigoobra" class="form-control" id="obracod" placeholder="Introduzca el código de obra">
+    -->
+    <div ng-if="pantallaAddO">
+      <input type="text" ng-model="obraDatos.codigoobra" 
+             class="form-control" 
+             id="obracod" name="obracodig"
+             ng-required="true">
+    </div>
+    <div ng-if="pantallaEditO">
+      <input type="text" ng-model="obraDatos.codigoobra" 
+             class="form-control" 
+             id="obracod" name="obracodig"
+             readonly>
+    </div>
+
+    <div ng-show="addObraForm.obracodig.$touched && addObraForm.obracodig.$invalid">
+        <small> Debes introducir el código de la obra </small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="title" class="control-label">Nombre Obra</label>
+    <input type="text" 
+           ng-model="obraDatos.nombreobra" 
+           class="form-control" 
+           id="obranom" name="obranombre"
+           ng-required="true">
+    <!-- Show a help message to the user using our own CSS styles -->
+    <div ng-show="addObraForm.obranombre.$touched && addObraForm.obranombre.$invalid">
+        <small> Debes introducir el nombre de la obra </small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" 
+           class="btn btn-primary" 
+           ng-click="guardarObra()"
+           ng-disabled="addObraForm.$invalid"
+           value="Guardar">
+
+    <button ng-click="back()" type="button" class="btn btn-success">Back </button>
+  </div>
+</form>
+
+<br>
+<ng-include src="'views/notifications/error.html'"></ng-include>

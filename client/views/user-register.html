@@ -1,0 +1,170 @@
+
+<form class="form-horizontal" ng-submit="register()" 
+      id="userForm" 
+			name="userRegisterForm" novalidate>
+
+	<div class="form-group">
+	  <div class="col-sm-offset-2 col-sm-10">
+	    <h3><p class="bg-info scr-title">Cubra el siguiente formulario para darse de alta en la App</p></h3><br>
+	  </div>
+	</div>
+
+	<p class="text-warning">{{error_message}}</p>
+
+	<div class="form-group">
+	  <label for="inuser" class="col-sm-2 control-label">Usuario</label>
+	  <div class="col-sm-10">
+	    <input class="form-control" 
+	           type="text" 	
+	           ng-model="userDatos.username"
+						 name="username"    
+	 		       ng-required="true">
+
+			<div ng-show="userRegisterForm.username.$touched && userRegisterForm.username.$invalid">
+					<small> Debes introducir un nombre de usuario </small>
+			</div>
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label for="inpass" class="col-sm-2 control-label">Password</label>
+	  <div class="col-sm-10">
+	    <input class="form-control" 
+	           type="password" 	
+	           ng-model="userDatos.password" 
+						 name="password"  
+	 		       ng-required="true">
+				
+			<div ng-show="userRegisterForm.password.$touched && userRegisterForm.password.$invalid">
+					<small> Debes introducir una contraseña de usuario </small>
+			</div>
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label for="infirstname" class="col-sm-2 control-label">Nombre</label>
+	  <div class="col-sm-10">
+	    <input class="form-control" 
+	           type="text" 	
+	           ng-model="userDatos.firstname"  
+						 name="firstname" 
+	 		       ng-required="true">
+
+			<div ng-show="userRegisterForm.firstname.$touched && userRegisterForm.firstname.$invalid">
+					<small> Debes introducir tu nombre</small>
+			</div>
+	  </div>
+	</div>
+
+ 	<div class="form-group">
+	  <label for="inlastname" class="col-sm-2 control-label">Apellidos</label>
+	  <div class="col-sm-10">
+	    <input class="form-control" 
+	           type="text" 	
+	           ng-model="userDatos.lastname">
+
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label for="indateofbirth" class="col-sm-2 control-label">Fecha Nacimiento</label>
+	  <div class="col-sm-10">
+	    <input class="form-control" 
+	           type="date" 	
+	           ng-model="userDatos.datebirth"   
+						 name="userdate"
+	 		       min="1920-01-01"       
+				     max="2016-12-31"
+				     ng-required="true">
+					
+			<div ng-show="userRegisterForm.userdate.$touched && userRegisterForm.userdate.$invalid">
+					<span ng-show="userRegisterForm.userdate.$error.required"> 
+						<small>Debes introducir una fecha de nacimiento </small> 
+					</span> 
+					<span ng-show="userRegisterForm.userdate.$error.min || userDetailForm.userdate.$error.max"> 
+						<small>La fecha escogida no se acepta </small>
+					</span>
+			</div>
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label for="inmobile" class="col-sm-2 control-label">Móvil (opcional)</label>
+	  <div class="col-sm-10">
+	    <input class="form-control" 
+	           type="text" 	
+	           ng-model="userDatos.phone">
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label for="inemail" class="col-sm-2 control-label">Email</label>
+	  <div class="col-sm-10">
+	    <input class="form-control" 
+	           type="email" 	
+	           ng-model="userDatos.email"  
+						 name="usermail" 
+	 		       ng-required="true">
+
+			<span ng-show="userRegisterForm.usermail.$touched && userRegisterForm.usermail.$invalid">
+				<span ng-show="userRegisterForm.usermail.$error.required"> 
+					<small>La dirección de email es obligatoria </small> 
+				</span> 
+				<span ng-show="userRegisterForm.usermail.$error.email"> 
+					<small>El formato de email es incorrecto (ej: email@gmail.com) </small>
+				</span>
+			</span>
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <div class="col-sm-offset-2 col-sm-10">
+	    <input type="submit" value="Registrarse" 
+			                     class="btn btn-primary btn-md"
+			                     ng-disabled="userRegisterForm.$invalid">
+	  </div>
+	</div>
+
+</form>
+
+<br>
+
+<br>
+<ng-include src="'views/notifications/error.html'"></ng-include>
+
+<!--
+<div class="alert alert-danger" ng-show="isError">
+    <a href="#/user/create" class="close" data-dismiss="alert" aria-label="close" ng-click="isError = false">&times;</a>
+    <strong>Atento!</strong> {{errorMsg.data}}  <span class="glyphicon glyphicon-thumbs-down"></span>
+</div>
+-->
+
+
+
+<!--
+
+	<div class="form-group">
+	<label>Username</label>
+	<input type="username" 	ng-model="userDatos.username"   
+	 					   	placeholder="Elija un nombre de usuario"  	class="form-control" required><br>
+	</div>
+
+	<input type="password" 	ng-model="userDatos.password"   
+						   	placeholder="Elija un password"         	class="form-control" required><br>
+
+	<input type="text"     	ng-model="userDatos.firstname"  
+							placeholder="Introduzca su nombre"      	class="form-control"><br>
+	<input type="text"     	ng-model="userDatos.lastname"   
+							placeholder="Introduzca su apellido"      	class="form-control"><br>
+
+	<input type="date"     	ng-model="userDatos.datebirth"  
+							placeholder="Introduzca fecha nacimiento"	class="form-control"
+	                        min="1900-01-01"       max="2016-12-31"><br>
+
+	<input type="text"     	ng-model="userDatos.phone"      
+							placeholder="Introduzca un movil"         	class="form-control"><br>
+	<input type="email"    	ng-model="userDatos.email"      
+							placeholder="Introduzca un email" 		 	class="form-control"><br>	
+	<input type="submit" 	value="Registarse" 	 class="btn btn-primary" />
+
+	-->

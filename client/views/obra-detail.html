@@ -1,0 +1,24 @@
+<ng-include src="'views/obra-navs.html'"></ng-include>
+
+<br>
+<div class="form-group">
+	<label for="title" class="control-label">Código Obra</label>
+	<input type="text" ng-model="obraDatos.codigoobra" class="form-control" readonly>
+</div>
+
+<div class="form-group">
+	<label for="title" class="control-label">Nombre Obra</label>
+	<input type="text" ng-model="obraDatos.nombreobra" class="form-control" readonly>
+</div>
+
+<!--
+<label for="title" class="control-label">Código Obra</label>
+<h3>{{ obraDatos.codigoobra }}</h3>
+
+<label for="title" class="control-label">Nombre Obra</label>
+<p>{{ obraDatos.nombreobra }}</p> 
+-->
+
+<div class="form-group">
+   <button ng-click="back()" type="button" class="btn btn-success">Back</button>
+</div>

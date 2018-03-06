@@ -1,0 +1,125 @@
+<ng-include src="'views/promotor-navs.html'"></ng-include>
+
+<br>
+<div class="form-group">
+	<label for="title" class="control-label">Código Promotor</label>
+	<input type="text" ng-model="promotorDatos.codigop" class="form-control" readonly>
+</div>
+
+<div class="form-group">
+	<label for="title" class="control-label">Nombre Promotor</label>
+	<input type="text" ng-model="promotorDatos.nombrep" class="form-control" readonly>
+</div>
+
+<!--
+<label for="title" class="control-label">Código Promotor</label>
+<h3>{{ promotorDatos.codigop }}</h3>
+
+<label for="title" class="control-label">Nombre Promotor</label>
+<p>{{ promotorDatos.nombrep }}</p> 
+-->
+
+  <div class="form-group">
+    <label for="title" class="control-label">CIF Promotor</label>
+    <input type="text" ng-model="promotorDatos.cifp" class="form-control" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="inmovil" class="control-label">Movil Promotor</label>
+    <input class="form-control" type="telephone"  ng-model="promotorDatos.telefp" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="inemail" class="control-label">Email promotor</label>
+    <input class="form-control" type="email"  ng-model="promotorDatos.emailp"  readonly>
+  </div>
+
+  <br>
+  <fieldset ng-form="fAddress">
+    <legend>Direccion del promotor</legend>
+    <!--
+    <span class="glyphicon glyphicon-map-marker" ng-click="verMapa()"></span> -->
+
+    <div class="row">
+    <div class="form-group">
+      <label for="incalle" class="col-sm-2 control-label">Calle</label>
+      <div class="col-sm-9">
+        <input class="form-control" 
+               type="text"  
+               ng-model="promotorDatos.direcp.callep"   
+           	   readonly>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group">
+      <label for="inprov" class="col-sm-2 control-label">Provincia</label>
+      <div class="col-sm-4">
+        <input class="form-control" 
+               type="text"  
+               ng-model="promotorDatos.direcp.provincia"   
+           	   readonly>
+      </div>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group">
+      <label for="inpueblo" class="col-sm-2 control-label">Localidad</label>
+      <div class="col-sm-4">
+        <input class="form-control" 
+               type="text"  
+               ng-model="promotorDatos.direcp.pueblo"   
+           	   readonly>
+      </div>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group">
+      <label for="incp" class="col-sm-2 control-label">Codigo postal</label>
+      <div class="col-sm-4">
+        <input class="form-control" 
+               type="text"  
+               ng-model="promotorDatos.direcp.codpostal"   
+               readonly>
+      </div>
+      <div class="col-sm-3"></div>
+      <div class="col-sm-3">
+        <button type="button" 
+                class="btn btn-info glyphicon glyphicon-map-marker" id="btnGoogleMap" 
+                ng-show="addressFilled && (countClicks == 0)"
+                ng-click="iniciarMapaGoogle()"> Mostrar
+                <!-- ng-show="addressFilled&&!viewMap" -->
+        </button>
+         <!-- Si anteriormente realizamos peticion http para cargar mapa -> NO volver a hacerla *-->
+        <button type="button" 
+                class="btn btn-warning glyphicon glyphicon-resize-vertical" id="btnGoogleMap" 
+                ng-show="addressFilled && (countClicks > 0)"     
+                ng-click="toggleMap()">  Conmutar
+               <!-- ng-show="viewMap" ng-click="ocultarMapaGoogle()"> Ocultar -->
+        </button>
+      </div>
+    </div>
+    </div>
+  </fieldset>
+<!--
+  <button type="button" class="btn btn-info" ng-click="getCoordenadas()">Ver latitud-longitud</button>
+  -->
+
+  <div id="map" ng-show="viewMap"></div>
+  
+<!--
+    <p>
+     <img src="{{rutaImagen}}"></img>
+    </p>
+-->
+
+<br>
+<ng-include src="'views/notifications/error.html'"></ng-include>
+
+<div class="form-group">
+   <button ng-click="back()" type="button" class="btn btn-success">Back</button>
+</div>

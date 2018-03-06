@@ -1,0 +1,57 @@
+ <h3><p class="scr-title"> Obras del promotor {{$root.promotorSeleccionado}} </p></h3>
+ <br>
+
+ <table class="table table-striped">
+  <thead>
+    <th>Codigo Obra</th>
+    <th>Nombre Obra </th>
+    <th>Fecha Alta Obra</th>
+    <th>Operaciones</th>    
+  </thead>
+  
+  <tbody>
+
+    <!-- <tr ng-repeat="obra in obras"> -->
+    <tr dir-paginate="obra in obras|itemsPerPage: numItemsPerPage">
+
+      <!-- ruta en Angular para DETALLE de obra, llamara al controlador y vista: '/obrapromotor/:id/detail/:cod' -->
+      <td><a ng-href="/#/obrapromotor/{{promotorid}}/detail/{{ obra.codigoobra }}">{{ obra.codigoobra }}</a></td> 
+      <td>{{ obra.nombreobra }}</td>
+      <td>{{ obra.creada | date:"MMM d, y ' a las ' h:mma" }}</td> 
+      <td>
+        <div class="button-group">
+          <!-- ruta Angular para EDITAR obra, llamara al controlador y vista: '/obrapromotor/:id/edit/:cod' -->
+          <a ng-href="/#/obrapromotor/{{promotorid}}/edit/{{ obra.codigoobra }}" class="btn btn-default"
+              data-toogle="tooltip"
+              data-placement="top"
+              title="Editar Obra">
+            <span class="glyphicon glyphicon-edit"></span>
+          </a> 
+          <!-- ruta Angular para BORRAR obra, llamara al controlador y vista: '/obrapromotor/:id/delete/:cod' -->
+          <a ng-href="/#/obrapromotor/{{promotorid}}/delete/{{ obra.codigoobra }}" class="btn btn-danger"
+              data-toogle="tooltip"
+              data-placement="top"
+              title="Borrar Obra">  
+            <span class="glyphicon glyphicon-remove-circle"></span>
+          </a>
+        </div>
+      </td>                                                                     
+    </tr>
+  </tbody>
+</table> 
+
+<ng-include src="'views/pagination.html'"></ng-include>
+<br>
+
+<!-- <div class="col-md-6"></div> -->
+
+<div class="obrasbuttons">
+  <!--Boton para crear un obra, en href especificamos la ruta a cargar (y por tanto la vista y controlador asociados) -->
+  <a class="btn btn-primary" href="/#/obrapromotor/{{promotorid}}/create">
+     <span class="glyphicon glyphicon-plus"></span> Crear obra </a>  
+
+  <!--<div class="form-group"></div> -->
+     <button ng-click="back()" type="button" class="btn btn-success">Back ... </button>
+  
+</div>
+

@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+  <head>
+   <!-- <base href="/" /> -->
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/misestilos.css">
+
+    <!-- BootStrap THEMES download-->
+    <!--<link rel="stylesheet" href="styles/sketchy.css"> -->
+    
+    <!--<link rel="stylesheet" href="https://bootswatch.com/4/sketchy/bootstrap.min.css" type="text/css"/> -->
+    <!--<link rel="stylesheet" href="https://bootswatch.com/3/cosmo/bootstrap.min.css" type="text/css"/> -->
+    <!--<link rel="stylesheet" href="https://bootswatch.com/3/united/bootstrap.min.css" type="text/css"/> --> 
+    <!--<link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css" type="text/css"/> -->
+    <!--<link rel="stylesheet" href="https://bootswatch.com/3/darkly/bootstrap.min.css" type="text/css"/> -->
+    <!--<link rel="stylesheet" href="https://bootswatch.com/3/cerulean/bootstrap.min.css" type="text/css"/> -->
+    <!-- endbuild -->
+  </head>
+  <body ng-app="promotorApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="header">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation"> <!-- fijo arriba la barra de navegacion -->
+        <div class="container">
+          <div class="navbar-header">
+          <!-- Si el navegador no esta maximizado la barra navegacion se muestra como un boton que despliega opciones-->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#/">Gestion promotores</a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#/">
+                 <span class="glyphicon glyphicon-home"></span> Home</a></li>
+              <li><a ng-show="authenticated" ng-href="#/promotores">Promotores</a></li>
+              <li><a ng-show="authenticated" ng-href="#/obrasAll">Promociones</a></li>
+              <li><a ng-show="authenticated && administrator" ng-href="#/admin">
+                <span class="glyphicon glyphicon-cog"></span> Administracion</a></li>
+            </ul>
+
+            <p class="navbar-right navbar-text" 
+                 ng-hide="authenticated"><a href="#/user/login">Login</a> or <a href="#/user/create">Registro</a></p>
+            <p class="navbar-right navbar-text" 
+                 ng-show="authenticated"><a href="#" ng-click="signout()">Cerrar sesión</a></p>
+            <p class="navbar-right navbar-text" 
+                 ng-show="authenticated">
+                 <span class="glyphicon glyphicon-user"></span> 
+                 <a href="#/user/{{current_user}}">{{current_user}}</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="main" ng-view=""></div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <p><span class="glyphicon glyphicon-heart"></span> Gestión de promotores y obras </p>
+        
+        <!--
+        <div class="row-fluid">
+            <div class="col-md-6" ng-repeat="block in content">
+              <img class="img-circle" ng-src="{{block.img}}">
+              <h3>{{block.title}}</h3>
+              <p>{{block.summary}} </p>
+            </div>
+        </div>
+        -->
+      </div>
+    </div>
+
+    <!--
+    <div id="map"></div>
+    -->
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script> -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+
+
+<!-- No usar ya que tras cargar el API hace un callback inicial a "initMap" y eso NO me interesa aqui
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYPE5eUENmWQ4ci3EkbTBR3C1c45qb9tA&callback=initMap">
+    </script>
+-->
+
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYPE5eUENmWQ4ci3EkbTBR3C1c45qb9tA">
+    </script>
+    
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angularUtils-pagination/dirPagination.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        
+        <script src="scripts/appfront.js"></script>
+        <script src="scripts/controllers/main.js"></script> 
+        <script src="scripts/controllers/promotores.js"></script>
+        <script src="scripts/models/factorias.js"></script>
+        <script src="scripts/controllers/promotor-add.js"></script>
+        <script src="scripts/controllers/promotor-detail.js"></script>
+        <script src="scripts/controllers/promotor-delete.js"></script>
+        <script src="scripts/controllers/promotor-edit.js"></script>
+        <script src="scripts/controllers/obras.js"></script>
+        <script src="scripts/controllers/obra-add.js"></script>
+        <script src="scripts/controllers/obra-detail.js"></script>
+        <script src="scripts/controllers/obra-delete.js"></script>
+        <script src="scripts/controllers/obra-edit.js"></script>
+        <script src="scripts/controllers/obras-all.js"></script>
+        <script src="scripts/controllers/user-register.js"></script>
+        <script src="scripts/controllers/user-login.js"></script>
+        <script src="scripts/controllers/user-detail.js"></script>
+        <script src="scripts/controllers/user-admin.js"></script>
+        <script src="scripts/controllers/user-delete.js"></script>
+        <script src="scripts/models/provincias.service.js"></script>
+        <script src="scripts/models/localstore.service.js"></script>
+        <!-- To manage nav-bar and tooltips with Jquery -->
+        <script>
+
+          $(function(){
+
+            //active-desactivate navbar 
+            $('#js-navbar-collapse li').on("click", function(){             
+              $('#js-navbar-collapse li').removeClass("active");
+              $(this).addClass("active");
+            });
+
+            /* show-hide GoogleMap : DOESN'T WORK!            
+            $('#btnGoogleMap').on("click", function(){ 
+              console.log("Desde JQUERY entra evento click");            
+              $('#map').addClass("active");
+            }); */
+
+            //tooltip
+            $('[data-toogle="tooltip"]').tooltip();
+          });   
+
+        </script>
+        
+</body>
+</html>

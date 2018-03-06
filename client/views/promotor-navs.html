@@ -1,0 +1,10 @@
+<!-- creamos tabs que pondremos al comienzo de las páginas para "view" y "edit" -->
+
+<!-- en función de si estamos consultando o editando tenemos que fijar que clase esta activa -->
+<!-- "editPromotor" y "viewPromotor" son objetos adjuntados al $scope en los respectivos controladores  -->
+
+<!-- Si viewPromotor = true va a asignar como “active” la clase “nav nav-tabs” -->
+<ul class="nav nav-tabs">
+  <li role="presentation" ng-class="{active: viewPromotor}"><a ng-href="/#/promotor/detail/{{ promotorDatos._id }}">View</a></li>
+  <li role="presentation" ng-class="{active: editPromotor}"><a ng-href="/#/promotor/edit/{{ promotorDatos._id }}">Edit</a></li>
+</ul>

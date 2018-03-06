@@ -1,0 +1,10 @@
+<form role="form">
+  <p>Vas a eliminar el perfil del usuario {{ userDatos.username }}, ¿deseas continuar?</p>
+  <div class="form-group">
+    <input type="submit" class="btn btn-danger" ng-click="borrarUsuario()" value="Si">
+    <button ng-click="back()" type="button" class="btn btn-default">No</button>
+  </div>
+</form>
+
+<br>
+<ng-include src="'views/notifications/error.html'"></ng-include>

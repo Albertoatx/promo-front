@@ -1,0 +1,148 @@
+
+<form class="form-horizontal" ng-submit="actualizar()"
+			id="userDetailForm" 
+			name="userDetailForm" novalidate>
+
+	<div class="form-group">
+	  <div class="col-sm-offset-2 col-sm-10">
+	    <h3><p class="bg-info scr-title">Detalle del perfil de usuario</p></h3><br>
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <div class="col-sm-offset-2 col-sm-10">
+	    <input type="checkbox" id="chkactualiz" ng-model="activado"> 
+			  <label for="chkactualiz">Pinche para poder actualizar perfil </label><br/>
+	  </div>
+	</div>
+
+	<br>
+	<div class="form-group">
+	  <label for="inuser" class="col-sm-2 control-label">Usuario</label>
+	  <div class="col-sm-10">
+	    <input class="form-control" 
+	           type="text" 	
+	           ng-model="userDatos.username"   
+	 		       readonly>
+	  </div>
+	</div>
+
+	<br> <!-- disabled when activado == false, el campo sera obligatorio (required) si el check esta activado  -->
+	<div class="form-group">
+	  <label for="infirstname" class="col-sm-2 control-label">Nombre</label>
+	  <div class="col-sm-10">
+	    <input class="form-control" 
+	           type="text" 	
+	           ng-model="userDatos.firstname"   
+						 name="ufirstname"
+					   ng-disabled="!activado"
+						 ng-required="activado">
+
+			<div ng-show="userDetailForm.ufirstname.$touched && userDetailForm.ufirstname.$invalid && activado">
+					<small> Debes introducir tu nombre</small>
+			</div>
+	  </div>
+	</div>
+
+	<br>
+ 	<div class="form-group">
+	  <label for="inlastname" class="col-sm-2 control-label">Apellidos</label>
+	  <div class="col-sm-10">
+	    <input class="form-control" 
+	           type="text" 	
+	           ng-model="userDatos.lastname"   
+	 		       ng-disabled="!activado">
+	  </div>
+	</div>
+
+	<br>
+	<div class="form-group">
+	  <label for="indateofbirth" class="col-sm-2 control-label">Fecha Nacimiento</label>
+	  <div class="col-sm-10">
+	    <input class="form-control" 
+	           type="date" 	
+	           ng-model="userDatos.datebirth"   
+	 		       min="1920-01-01"       
+					   max="2016-12-31" 
+						 name="udate"
+						 ng-disabled="!activado"
+						 ng-required="activado">
+
+				<div ng-show="userDetailForm.udate.$invalid && activado">
+					<span ng-show="userDetailForm.udate.$error.required"> 
+						<small>Debes introducir una fecha de nacimiento </small> 
+					</span> 
+					<span ng-show="userDetailForm.udate.$error.min || userDetailForm.udate.$error.max"> 
+						<small>La fecha escogida no se acepta </small>
+					</span>
+				</div>
+	  </div>
+	</div>
+
+	<br>
+	<div class="form-group">
+	  <label for="inmobile" class="col-sm-2 control-label">Móvil</label>
+	  <div class="col-sm-10">
+	    <input class="form-control" 
+	           type="telephone" 	
+	           ng-model="userDatos.phone"   
+	 		       ng-disabled="!activado">
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label for="inlastname" class="col-sm-2 control-label">Email</label>
+	  <div class="col-sm-10">
+	    <input class="form-control" 
+	           type="email" 	
+	           ng-model="userDatos.email"
+						 name="useremail"   
+	 		       ng-disabled="!activado"
+						 ng-required="activado">
+
+			<span ng-show="userDetailForm.useremail.$invalid">
+			
+				<span ng-show="userDetailForm.useremail.$error.required"> 
+					<small>La dirección de email es obligatoria </small> 
+				</span> 
+				<span ng-show="userDetailForm.useremail.$error.email"> 
+					<small>El formato de email es incorrecto (ej: email@gmail.com) </small>
+				</span>
+			</span>
+
+	  </div>
+	</div>
+
+	<!--
+	activado: {{activado}} //
+	$invalid form: {{userDetailForm.$invalid}} // 
+	$invalid firstname: {{userDetailForm.ufirstname.$invalid}} //
+	$invalid date: {{userDetailForm.udate.$invalid}} //
+	$invalid email: {{userDetailForm.useremail.$invalid}} //
+	-->
+
+  <div class="text-center"> 
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<ng-include src="'views/notifications/error.html'"></ng-include>
+				<ng-include src="'views/notifications/correcto.html'"></ng-include>
+			</div>
+		</div>
+ </div>		
+
+ <div class="text-center"> 
+	<div class="form-group">
+	  <div class="col-sm-offset-2 col-sm-10">   <!-- userRegisterForm.$invalid -->
+	    <input type="submit" value="Actualizar" class="btn btn-primary btn-md" ng-disabled="!activado || userDetailForm.$invalid">
+	  </div>
+	</div>
+ </div>		
+
+</form>
+
+<!--
+<br>
+<ng-include src="'views/notifications/error.html'"></ng-include>
+
+<ng-include src="'views/notifications/correcto.html'"></ng-include>
+-->

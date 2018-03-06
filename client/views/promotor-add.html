@@ -1,0 +1,247 @@
+<br>
+      <!-- 'novalidate' to not apply HTML5 validations (we want angularJS to validate) -->
+<form role="form" id="promotorForm" name="addPromotorForm" novalidate> 
+  
+  <div class="form-group">
+  <!-- If we want to use Bootstrap 'has-error' or 'has-success' classes for validation 
+  <div class="form-group"
+        ng-class="{'has-error': addPromotorForm.procode.$invalid && addPromotorForm.procode.$touched,
+                  'has-success': addPromotorForm.procode.$valid && addPromotorForm.procode.$touched}">
+  -->
+    <label for="title" class="control-label">Código Promotor</label>
+    <div ng-if="pantallaAddP">
+       <input type="text" 
+              ng-model="promotorDatos.codigop" 
+              class="form-control" id="procod" name="procode" 
+              ng-required="true">
+      <!--
+      <span>
+        $pristine - {{addPromotorForm.procode.$pristine}}, 
+        $dirty - {{addPromotorForm.procode.$dirty}}, 
+        $touched - {{addPromotorForm.procode.$touched}}, 
+        $untouched - {{addPromotorForm.procode.$untouched}}, 
+        $valid - {{addPromotorForm.procode.$valid}}, 
+        $invalid - {{addPromotorForm.procode.$invalid}}
+      </span> -->
+
+      <!-- Show a help message to the user  using our own CSS styles -->
+      <div ng-show="addPromotorForm.procode.$touched && addPromotorForm.procode.$invalid">
+        <small> Debes introducir un código de promotor </small>
+      </div>
+      
+      <!-- Show a help message to the user using Bootstrap styles -->
+      <!--
+      <span class="help-block" ng-show="addPromotorForm.procode.$touched && addPromotorForm.procode.$invalid">
+        Debes introducir un código de promotor
+      </span>
+      -->
+
+    </div>
+    <div ng-if="pantallaEditP">
+      <input type="text" 
+             ng-model="promotorDatos.codigop" 
+             class="form-control" id="procod" 
+             placeholder="Introduzca el código de promotor" readonly>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="title" class="control-label">Nombre Promotor</label>
+    <input type="text" 
+           ng-model="promotorDatos.nombrep" 
+           class="form-control" id="pronom" name="pronombre"
+           ng-required="true">
+     <!-- Show a help message to the user using our own CSS styles -->
+    <div ng-show="addPromotorForm.pronombre.$touched && addPromotorForm.pronombre.$invalid">
+        <small> Debes introducir el nombre del promotor </small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="title" class="control-label">CIF Promotor</label>
+    <input type="text" 
+           ng-model="promotorDatos.cifp" 
+           class="form-control" id="procif" name="procifp"
+           ng-required="true">
+    <!-- Show a help message to the user using our own CSS styles -->
+    <div ng-show="addPromotorForm.procifp.$touched && addPromotorForm.procifp.$invalid">
+        <small> Debes introducir el CIF del promotor </small>
+    </div>         
+  </div>
+
+  <div class="form-group">
+    <label for="inmovil" class="control-label">Movil Promotor</label>
+    <input class="form-control" 
+           type="telephone"  
+           ng-model="promotorDatos.telefp"   
+           placeholder="Introduzca un movil si lo desea (opcional)">
+  </div>
+
+  <div class="form-group">
+    <label for="inemail" class="control-label">Email promotor</label>
+    <input class="form-control" 
+           type="email"  
+           ng-model="promotorDatos.emailp"
+           name="promail"    
+           ng-required="true">
+
+		<span ng-show="addPromotorForm.promail.$touched && addPromotorForm.promail.$invalid">
+			<span ng-show="addPromotorForm.promail.$error.required"> 
+					<small>La dirección de email es obligatoria </small> </span> 
+			<span ng-show="addPromotorForm.promail.$error.email"> 
+					<small>El formato de la dirección de email es incorrecto (ej: email@gmail.com) </small></span>
+		</span>
+
+    <!-- Show a help message to the user using our own CSS styles -->
+    <!--
+    <div ng-show="addPromotorForm.promail.$touched && addPromotorForm.promail.$invalid">
+        <small> Debes introducir el email del promotor en el formato adecuado (ej: tumail@gmail.com) </small>
+    </div>  
+    -->
+  </div> 
+
+  <fieldset ng-form="fAddress" name="prAddrForm"> 
+    <legend>Direccion del promotor</legend>
+
+    <div class="row">
+      <div class="form-group">
+        <label for="incalle" class="col-sm-2 control-label">Calle</label>
+        <div class="col-sm-9">
+          <input class="form-control" 
+                type="text"  
+                ng-model="promotorDatos.direcp.callep"   
+                placeholder="(opcional)">
+        </div>
+        <div class="col-sm-1"></div>
+      </div>
+    </div>
+
+    <!-- Previous version (Before we have a service to load the provincies)
+    <div class="row">
+      <div class="form-group">
+        <label for="inprov" class="col-sm-2 control-label">Provincia</label>
+        <div class="col-sm-4">
+          <input class="form-control" 
+                type="text"  
+                ng-model="promotorDatos.direcp.provincia"   
+                name="proprovincia"    
+                ng-required="true">
+          
+          <
+          <div ng-show="addPromotorForm.prAddrForm.proprovincia.$touched && 
+                        addPromotorForm.prAddrForm.proprovincia.$invalid">
+            <small> Debes introducir la provincia del promotor</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    -->
+
+    <div class="row">
+      <div class="form-group">
+        <label for="inprov" class="col-sm-2 control-label" ng-click="verValoresCombobox()">Provincia</label>
+        <div class="col-sm-4">
+
+          <select class="form-control" 
+                  name="proprovincia"
+                  ng-model="promotorDatos.direcp.provincia"
+                  ng-required="true">
+
+            <!-- WHOA! "ng-if" y "ng-show" no funcionaban con los <option> dentro de un <div>  
+            <div ng-if="pantallaAddP">
+              <option disabled selected>Selecciona provincia</option>
+            </div>
+            -->
+            <option ng-if="pantallaAddP" disabled selected>Selecciona provincia</option> 
+
+            <option ng-if="pantallaEditP" value="" selected></option> 
+
+            <option ng-repeat="provObj in provincias" value="{{provObj.name}}" 
+                    ng-click="promotorDatos.direcp.provincia = provObj.value">{{provObj.name}}</option>
+
+          </select>
+
+          <!-- Show a help message to the user using our own CSS styles -->
+          <div ng-show="addPromotorForm.prAddrForm.proprovincia.$touched && 
+                        addPromotorForm.prAddrForm.proprovincia.$invalid">
+            <small> Debes introducir la localidad del promotor</small>
+          </div>  
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="form-group">
+        <label for="inpueblo" class="col-sm-2 control-label">Localidad</label>
+        <div class="col-sm-4">
+          <input class="form-control" 
+                type="text"  
+                ng-model="promotorDatos.direcp.pueblo"   
+                name="propueblo"   
+                ng-required="true">
+
+          <!-- Show a help message to the user using our own CSS styles -->
+          <div ng-show="addPromotorForm.prAddrForm.propueblo.$touched && 
+                        addPromotorForm.prAddrForm.propueblo.$invalid">
+            <small> Debes introducir la localidad del promotor</small>
+          </div>  
+          
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="form-group">
+        <label for="incp" class="col-sm-2 control-label">Código postal</label>
+        <div class="col-sm-4">
+          <input class="form-control" 
+                type="text" 
+                ng-model="promotorDatos.direcp.codpostal" 
+                name="procodpst"
+                min = 1000
+                max = 52999
+                minlength="5" maxlength="5"
+                placeholder="(opcional, 01000 a 52999)">
+          
+          <span ng-show="addPromotorForm.prAddrForm.procodpst.$touched && 
+                         addPromotorForm.prAddrForm.procodpst.$invalid">
+            
+            <span ng-show="addPromotorForm.prAddrForm.procodpst.$error.min"> 
+               <small> Codigo postal mínimo 01000 </small> 
+            </span>
+	          <span ng-show="addPromotorForm.prAddrForm.procodpst.$error.max"> 
+               <small> Código postal máximo 52999</small>  
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </fieldset>
+
+  <br>
+  <div class="obrasbuttons">
+    <input type="submit" 
+           class="btn btn-primary" 
+           ng-click="guardarPromotor()" 
+           value="Guardar" 
+           ng-disabled="addPromotorForm.$invalid">
+    <button type="button" class="btn btn-success" ng-click="back()">Back</button>
+  </div>
+
+</form>
+
+<!--
+<div class="alert alert-danger" ng-show="isError">
+    <a href="#/user/login" class="close" data-dismiss="alert" aria-label="close" ng-click="isError = false">&times;</a>
+    <strong>!</strong> {{errorMsg.data}}  <span class="glyphicon glyphicon-thumbs-down"></span>
+</div>
+-->
+
+<br>
+<ng-include src="'views/notifications/error.html'"></ng-include>
+
+

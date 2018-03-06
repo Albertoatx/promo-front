@@ -1,0 +1,24 @@
+<div class="container">
+  <form class="form-signin" id="login" role="form" ng-submit="login(credentials)">
+        <h2 class="form-signin-heading">Inicia sesión</h2>
+
+        <label>Login</label>
+        <input type="text"      class="form-control" placeholder="Usuario"  required ng-model="credentials.username"><br>
+
+        <label>Password</label>
+        <input type="password"  class="form-control" placeholder="Password" required ng-model="credentials.password">
+
+        <!--
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Recordar mis datos
+        </label>
+        --> 
+        
+        <button type="submit" class="btn btn-lg btn-primary btn-block" >Iniciar sesion</button>
+  </form>
+</div> 
+
+<br>
+
+<br>
+<ng-include src="'views/notifications/error.html'"></ng-include>

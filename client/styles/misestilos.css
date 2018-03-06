@@ -1,0 +1,401 @@
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+body {
+  padding: 0;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 10px;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px;
+}
+
+.jumbotron .mainbuttons {   /* mio */
+  display: inline-block;
+}
+
+.jumbotron .lead img {   /* mio */
+  max-height:65%;
+  width:65%;
+}
+
+#js-navbar-collapse {  /* mio */
+  font-size: 16px; 
+  /*background: red;
+  -webkit-animation: mymove 5s infinite; /* Chrome, Safari, Opera */
+  /* animation: mymove 5s infinite; */
+}
+  
+@-webkit-keyframes mymove { /* Animacion "mymove" para Chrome, Safari, Opera */
+    50% {background-color: #778899;}
+}
+
+/* Supporting marketing content */
+.marketing,.hero-unit {
+  margin: 40px 0;
+  text-align: center;  /* mio */
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+.obrasbuttons {   /* para mostrar varios botones en fila al consultar listado de obras */
+  display: inline;
+}
+
+/* Para ventana modal */
+/*
+.modal-body .ng-valid{      
+    border: thin solid #090;
+}
+.modal-body .ng-invalid{
+    border: thin solid #990000;
+} */
+
+/* para alinear campos del formulario en la ventana modal */
+/*
+.modal-body input{  
+    display: block;
+    width: auto;
+    height: auto;
+} */
+
+.large-Modal .modal-dialog{
+  width:600px; 
+  height: 800px;
+  position: relative;
+  top:0; bottom: 0; left: 0; right: 0;
+  margin: auto
+}
+
+.large-Modal .modal-content {
+    max-height: 800px;
+    overflow: auto;
+}
+
+.scr-title{
+    color: #8f746c;
+    padding: 10px 0px;
+    border: 2px solid #8f746c;
+    margin: 10px auto; /* to center it use 'auto' for right-left margin */
+    border-radius: 7px;
+    text-align: center; 
+    /*
+    position: fixed;
+    top: 33px;
+    width: 75%; */
+}
+
+.scr-info{
+    color: #242729;
+    font-size: 16px;
+    letter-spacing: 1px;
+    padding: 3px; 
+    font-style: italic;
+    text-align: center;
+    background-color: #f7e6ff;
+}
+
+
+/* styles for Google maps window -------------------------------------*/
+/* to center it use 'auto' for right-left margin */ 
+#map{
+  height: 400px;
+  width: 98%;
+  margin: 10px auto; 
+  border: 2px solid #8f746c;
+  border-radius: 5px;
+  /*overflow: visible;*/
+}
+
+/*
+#map .active{
+  height:400px;
+  width:100%;
+  border: 2px solid #8f746c;
+  border-radius: 5px;
+  margin: 3px auto;  
+}*/
+
+/* form styles --------------------------------------------------*/
+fieldset{
+  padding: 5px;
+  margin: 3px;
+  border: 1px solid #8f746c;
+}
+
+fieldset .form-group{
+  padding: 5px;
+  margin: 3px;
+}
+
+/*
+legend{
+  padding: 10px;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+} */
+
+input[type="email"], input[type="telephone"] {
+  display: block; /* separate lines for each one */
+  margin-bottom: 15px;
+  padding: 10px 10px 10px 50px; /* 50 px to give space for images */
+  border: 0;
+  border-radius: 4px;
+  background: url(../images/inputs.png) no-repeat;
+ /* color: #222; */ /* the color of the text we write in the input fields */
+  float: left; /* tutorial6 */
+  clear: both;
+}
+
+/* the black envelope in the image */
+input[type="email"]{
+  background-position: 7px 8px;  
+}
+
+/* the black phone in the image */
+input[type="telephone"]{
+  background-position: 7px -58px; 
+}
+
+/* give validation styles to forms --------------------------------------*/
+
+#promotorForm input.ng-invalid.ng-touched, 
+#obraForm input.ng-invalid.ng-touched,
+#userForm input.ng-invalid.ng-touched,
+#userDetailForm input.ng-invalid.ng-touched {
+ /* border: 1px solid red; */
+  border-left: 5px solid red;
+  border-bottom: 1px solid #E82E2E; 
+  border-right: 1px solid #E82E2E;
+  border-top: 1px solid #E82E2E;
+}
+
+#promotorForm input.ng-valid.ng-touched,
+#obraForm input.ng-valid.ng-touched,
+#userForm input.ng-valid.ng-touched,
+#userDetailForm input.ng-valid.ng-touched{
+  border-left: 5px solid green;
+}
+
+/* disable inputs with attribute disabled, such as buttons in form */
+input[disabled="disabled"]{
+  opacity: 0.5;
+  cursor: not-allowed; 
+}
+
+/* style our help validation messages */
+.form-group small{
+  color: red;
+  display: block;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* override Bootstrap help validation messages */
+.help-block{
+  text-align: center;
+  font-size: 14px;
+}
+
+/* table sorting ----------*/
+table{
+    border: 1px solid #8f746c;
+    /*border-radius: 15px; */  /* NO LO APLICA */
+}
+
+table thead{
+    background-color: #F2C9E2;
+    border-radius: 15px;
+    border-bottom: 1px solid #8f746c; /* NO SE VE */
+}
+
+th {
+    cursor: pointer;
+}
+
+.sort-icon {
+    font-size: 9px;
+    margin-left: 5px;
+}
+
+/* Animation ---------------------------*/
+/* The starting CSS styles for the enter animation */
+#main.ng-enter {
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+/* The finishing CSS styles for the enter animation */
+#main.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+
+/* Responsive: Portrait tablets and up ----------------------------------------*/
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 1024px; /* cambie esta propiedad para ver más info en las filas de las tablas */
+    /*max-height: 768px; /* lo puse para probar, el pie de pagina sale por encima */
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+/* ESTILOS PARA LA PANTALLA DE LOGIN ***********************************************/
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/*********************************************************************/
+.form-register {
+  /*max-width: 660px;
+  padding: 15px;
+  margin: 0 auto; */
+}
+
+.form-register .form-group {
+  /*display: inline-block;
+  vertical-align: middle;    */
+}
+
+
+
+/* Estilo para clases propias de angular (como ng-odd) ***************/
+.odd {
+  background-color: #f2f9ff;
+  
+}
+.even {
+  background-color: #eceff3;
+}
+
+/* Estilos de otras APP, prueba visual *******************************/
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+
+

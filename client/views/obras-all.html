@@ -1,0 +1,105 @@
+ <h3><p class="bg-info scr-title">Listado de todas las obras registradas en el sistema</p></h3>
+
+ <p class="scr-info">
+    El sistema esta actualmente gestionando un total de {{countObras}} obras. <br>
+ </p>
+
+ <form class="navbar-form navbar-right navbar-full navbar-dark bg-faded" >
+ 	   <label for="title" class="control-label">Filtar resultados</label>
+       <input type="text" class="form-control" ng-model="filtro" placeholder="Search...">
+ </form>
+ <br>
+ <!-- Busqueda: <input ng-model="filtro" type="text" name="filtro"/><br> -->
+
+ <table class="table table-striped">
+  <thead>
+    <!--
+    <th>Codigo Promotor</th>
+    <th>Codigo Obra</th>
+    <th>Nombre Obra </th>
+    <th>Fecha Alta Obra</th>
+    <th>Operaciones</th>   
+    -->
+
+    <!-- Implement sort feature 
+       * ng-show="sortKey==" to show the icon ONLY on the column that is being sorted
+       * ng-class to change the icon depending upon the value of reverse.
+    --> 
+    <th ng-click="sort('codigop')">Codigo Promotor
+      <span class="glyphicon sort-icon" 
+            ng-show="sortKey=='codigop'" 
+            ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+      </span>
+    </th>
+    <th ng-click="sort('codigoobra')">Codigo Obra
+      <span class="glyphicon sort-icon" 
+            ng-show="sortKey=='codigoobra'" 
+            ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+      </span>
+    </th>
+    <th ng-click="sort('nombreobra')">Nombre Obra 
+      <span class="glyphicon sort-icon" 
+            ng-show="sortKey=='nombreobra'" 
+            ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+      </span>
+    </th>
+    <th ng-click="sort('creada')">Fecha Alta Obra
+      <span class="glyphicon sort-icon" 
+            ng-show="sortKey=='creada'" 
+            ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+      </span>
+    </th>
+    <th>Operaciones</th> 
+  </thead>
+
+
+  <tbody>
+    <!-- <tr ng-repeat="obra in obras|orderBy:sortKey:reverse 
+                                     |filter:filtro"
+             ng-class-odd="'odd'" ng-class-even="'even'">
+    -->
+    <tr dir-paginate="obra in obras|orderBy:sortKey:reverse
+                                   |filter:filtro
+                                   |itemsPerPage: numItemsPerPage" 
+        ng-class-odd="'odd'" ng-class-even="'even'">
+
+      <!-- OJO, en esta pantalla obra._id es el identificador del PROMOTOR, no de la OBRA que no tiene campo _id -->
+
+      <!--<td>{{ obra.codigop}}</td> -->
+      <!--<td><a ng-href="/#/promotor/detail/{{obra._id}}">{{ obra.codigop }}</a></td> muestra detalle promotor -->
+      <td><a ng-href="/#/obraspromotor/{{obra._id}}">{{ obra.codigop }}</a></td>  <!-- nuestra obras de ese promotor -->
+
+      <!-- ruta en Angular para DETALLE de obra, llamara al controlador y vista: '/obrapromotor/:id/detail/:cod' -->
+      <td><a ng-href="/#/obrapromotor/{{obra._id}}/detail/{{ obra.promociones.codigoobra }}">
+                                                              {{ obra.promociones.codigoobra }}</a></td> 
+      <td>{{ obra.promociones.nombreobra }}</td>
+      <td>{{ obra.promociones.creada | date:"MMM d, y ' a las ' h:mma"}}</td> 
+      <td>
+        <div class="button-group">
+          <!-- ruta Angular para EDITAR obra, llamara al controlador y vista: '/obrapromotor/:id/edit/:cod' -->
+          <a ng-href="/#/obrapromotor/{{obra._id}}/edit/{{obra.promociones.codigoobra}}" class="btn btn-default"
+              data-toogle="tooltip"
+              data-placement="top"
+              title="Editar Obra">
+            <span class="glyphicon glyphicon-edit"></span>
+          </a> 
+          <!-- ruta Angular para BORRAR obra, llamara al controlador y vista: '/obrapromotor/:id/delete/:cod' -->
+          <a ng-href="/#/obrapromotor/{{obra._id}}/delete/{{obra.promociones.codigoobra}}" class="btn btn-danger"
+              data-toogle="tooltip"
+              data-placement="top"
+              title="Borrar Obra">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+          </a>
+        </div>
+      </td>                                                                     
+    </tr>
+  </tbody>
+</table> 
+
+<ng-include src="'views/pagination.html'"></ng-include>
+
+<br>
+
+<!--DESDE ESTA VISTA NO DEJAMOS GENERAR OBRAS (NO TENEMOS EL PROMOTOR para reenviar adecuadamente) 
+<a class="btn btn-primary" href="/#/obrapromotor/{{obra._id}}/create">
+<span class="glyphicon glyphicon-plus"></span> Crear obra </a>   -->

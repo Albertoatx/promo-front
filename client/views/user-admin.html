@@ -1,0 +1,104 @@
+
+ <h3><p class="bg-info scr-title">Usuarios registrados en el sistema</p></h3>
+
+ <p class="scr-info">
+ Hay un total de {{countUsers}} usuarios registrados en el sistema <br>
+ </p>
+
+ <form class="navbar-form navbar-right navbar-full navbar-dark bg-faded" >
+     <label for="title" class="control-label">Filtar resultados</label>
+       <input type="text" class="form-control" ng-model="filtroUsuarios" placeholder="Search...">
+ </form>
+ <br>
+
+ <table class="table table-striped table-hover">
+  <thead>
+    <!--
+    <th>Usuario</th>
+    <th>Nombre</th>
+    <th>Apellidos</th>
+    <th>Operaciones</th>  -->
+
+    <!-- Implement sort feature 
+       * ng-show="sortKey==" to show the icon ONLY on the column that is being sorted
+       * ng-class to change the icon depending upon the value of reverse.
+    -->
+    <th ng-click="sort('username')">Usuario
+      <span class="glyphicon sort-icon" 
+            ng-show="sortKey=='username'" 
+            ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+      </span>
+    </th>
+    <th ng-click="sort('firstname')">Nombre
+      <span class="glyphicon sort-icon" 
+            ng-show="sortKey=='firstname'" 
+            ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+      </span>
+    </th>
+    <th ng-click="sort('lastname')">Apellidos
+      <span class="glyphicon sort-icon" 
+            ng-show="sortKey=='lastname'" 
+            ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+      </span>
+    </th>
+    <th>Operaciones</th>  
+
+  </thead>
+  <tbody>                           <!-- orderBy:'creado_el':true" --> 
+    <!--
+    <tr ng-repeat="usuario in usuarios|orderBy:sortKey:reverse
+                                      |filter:filtroUsuarios" 
+        ng-class-odd="'odd'" ng-class-even="'even'">
+    -->
+      
+    <tr dir-paginate="usuario in usuarios|orderBy:sortKey:reverse
+                                         |filter:filtroUsuarios
+                                         |itemsPerPage: numItemsPerPage"
+        ng-class-odd="'odd'" ng-class-even="'even'">
+        
+      <td><a ng-href="/#/user/{{ usuario.username }}"> {{ usuario.username }}</a></td> <!-- ruta detalle del usuario -->
+      <td>{{ usuario.firstname }}</td>
+      <td>{{ usuario.lastname }}</td>
+
+      <td>
+        <div class="button-group">
+
+          <a ng-href="/#/user/{{ usuario.username }}" class="btn btn-default"
+               data-toogle="tooltip"
+               data-placement="top"
+               title="Editar"> <!-- desde detalle se puede editar -->
+            <span class="glyphicon glyphicon-plus-sign"></span>
+          </a>
+
+          <!-- Borrado con vista propia: SI enrutar -->
+          <a ng-href="/#/user/delete/{{ usuario.username }}" class="btn btn-danger"
+               data-toogle="tooltip"
+               data-placement="top"
+               title="Borrar Usuario">   
+            <span class="glyphicon glyphicon-trash"></span>
+          </a>
+
+          <!-- <button class="btn btn-success" ng-click="showModal()"> Add New User</button> -->
+          <!-- Cambiar password, crear una ventana MODAL -->
+          <a class="btn btn-primary" ng-click="showModal(usuario)"
+               data-toogle="tooltip"
+               data-placement="top"
+               title="Cambiar contraseña">  
+            <span class="glyphicon glyphicon-lock"></span> 
+           <!-- <span class="glyphicon glyphicon-pencil"></span> -->
+          </a>
+
+        </div>
+      </td>                                                                    
+    </tr>
+  </tbody>
+</table> 
+
+<ng-include src="'views/pagination.html'"></ng-include>
+
+<!--Boton para crear un usuario, en href especificamos la ruta a cargar (y por tanto la vista y controlador asociados )-->
+<!--
+<br>
+<a class="btn btn-primary" href="/#/usuario/create">
+<span class="glyphicon glyphicon-plus"></span> Crear usuario</a>
+-->
