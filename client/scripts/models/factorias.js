@@ -95,8 +95,10 @@ angular.module('promotorApp')
                 editObra: function (id, codObra, obraData) {
                     return $http.put(baseUrlForDevNode + '/api/promociones/' + id + '/' + codObra, obraData, httpConfigObj);
                 },  //Ojo, es POST porque el borrado NO es de todo el documento, solo de 1 elemento embebido 
-                deleteObra: function (id, codObra) {
-                    return $http.post(baseUrlForDevNode + '/api/promociones/' + id + '/' + codObra, httpConfigObj);
+                //deleteObra: function (id, codObra) {
+                deleteObra: function (id, codObra, obraData) {
+                    //return $http.post(baseUrlForDevNode + '/api/promociones/' + id + '/' + codObra, httpConfigObj);
+                    return $http.post(baseUrlForDevNode + '/api/promociones/' + id + '/' + codObra, obraData, httpConfigObj);
                 },
 
                 //Look for coordinates to later use in Google Maps ----------------------

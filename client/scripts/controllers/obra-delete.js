@@ -33,7 +33,9 @@ angular.module('promotorApp')
 
             //Cuando se pinche el boton "Yes" eliminamos el promotor, luego redirigimos al listado de obras
             $scope.borrarObra = function() {   
-                promotoresFactory.deleteObra($scope.promotorDatos_id, $scope.codigoObra).then(
+                //console.log($scope.obraDatos);
+                //promotoresFactory.deleteObra($scope.promotorDatos_id, $scope.codigoObra).then(
+                  promotoresFactory.deleteObra($scope.promotorDatos_id, $scope.codigoObra, $scope.obraDatos).then(
                     function() {
                         $location.path('/obraspromotor/' + $routeParams.id);  
                     },
